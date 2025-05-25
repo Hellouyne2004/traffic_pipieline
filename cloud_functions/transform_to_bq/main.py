@@ -20,7 +20,7 @@ def transform_to_bq_entrypoint(request):
         blobs = list(storage_client.list_blobs(bucket_name, prefix="raw/"))
         blobs = [b for b in blobs if b.name.endswith(".json")]
         if not blobs:
-            messages.append("❌ Không tìm thấy file dữ liệu giao thông.")
+            messages.append("Không tìm thấy file dữ liệu giao thông.")
             return "\n".join(messages), 404
 
         latest_blob = max(blobs, key=lambda b: b.updated)
@@ -51,9 +51,9 @@ def transform_to_bq_entrypoint(request):
             
         # Ghi vào BigQuery
         bq_client.load_table_from_dataframe(df, f"{dataset_id}.{table_id}").result()
-        messages.append(f"✅ Uploaded {len(df)} rows to {dataset_id}.{table_id}.")
+        messages.append(f"Uploaded {len(df)} rows to {dataset_id}.{table_id}.")
     except Exception as e:
-        messages.append(f"❌ Error: {str(e)}")
+        messages.append(f"Error: {str(e)}")
 
     print("Transformation Summary:")
     for msg in messages:
