@@ -56,6 +56,6 @@ def fetch_and_upload_traffic_data(request):
         return (f"✅ Successfully uploaded to: gs://{GCS_BUCKET_NAME}/{filename}", 200)
 
     except Exception as e:
-        print(f"❌ Error: {e}")
-        return (f"❌ Error: {str(e)}", 500)
+        print(f" Error: {e}")
+        return (f" Error: {str(e)}", 500)
 
