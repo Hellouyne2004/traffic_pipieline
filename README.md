@@ -15,7 +15,6 @@ A fully serverless data pipeline that crawls HERE traffic data for Go Vap, store
   - [3. Deploy Workflow](#3-deploy-workflow)
   - [4. Setup Scheduler](#4-setup-scheduler)
 - [GitHub Actions (CI/CD)](#github-actions-cicd)
-- [Example Output](#example-output)
 
 ## Features
 - ✅ Automated traffic data collection from HERE API for Go Vap
@@ -123,7 +122,7 @@ gcloud scheduler jobs create http traffic-pipeline-job \
 - Uses `google-github-actions/auth` and `gcloud` CLI
 - Secrets required:
   - `GCP_SA_KEY`
-  - `HERE_API`
+  - `HERE_API_KEY`
   - `SLACK_WEBHOOK_URL`
 
   
