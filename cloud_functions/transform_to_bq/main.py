@@ -16,7 +16,7 @@ def transform_to_bq_entrypoint(request):
 
     # Đọc file JSON mới nhất trong thư mục raw/
     try:
-        print("🔎 Tìm file dữ liệu giao thông mới nhất trong GCS...")
+        print(" Tìm file dữ liệu giao thông mới nhất trong GCS...")
         blobs = list(storage_client.list_blobs(bucket_name, prefix="raw/"))
         blobs = [b for b in blobs if b.name.endswith(".json")]
         if not blobs:
