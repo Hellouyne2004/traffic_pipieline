@@ -1,0 +1,35 @@
+main:
+  params: []
+  steps:
+    - log_start:
+        call: sys.log
+        args:
+          text: "START: traffic-data workflow"
+          severity: INFO
+
+    - fetch_traffic_data:
+        call: http.get
+        args:
+          url: https://asia-southeast1-eco-layout-460414-e7.cloudfunctions.net/fetch_and_upload_traffic_data
+        result: fetch_result
+
+    - transform_and_load_to_bq:
+        call: http.get
+        args:
+          url: https://asia-southeast1-eco-layout-460414-e7.cloudfunctions.net/transform_to_bq_entrypoint
+        result: transform_result
+
+    - notify_slack:
+        call: http.post
+        args:
+          url: '${sys.get_env("SLACK_WEBHOOK_URL")}'
+          headers:
+            Content-Type: application/json
+          body:
+            text: '${"Traffic pipeline completed! (Time: " + string(sys.now() + 25200) + " GMT+7)"}'
+
+    - log_end:
+        call: sys.log
+        args:
+          text: "Workflow FINISHED: traffic pipeline"
+          severity: INFO
