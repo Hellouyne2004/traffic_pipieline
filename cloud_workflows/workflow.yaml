@@ -26,7 +26,7 @@ main:
           headers:
             Content-Type: application/json
           body:
-            text: '${"Traffic pipeline completed! (Time: " + string(sys.now() + 25200) + " GMT+7)"}'
+            text: '${"Traffic watch pipeline completed! (Time: " + string(sys.now() + 25200) + " GMT+7)"}'
 
     - log_end:
         call: sys.log
